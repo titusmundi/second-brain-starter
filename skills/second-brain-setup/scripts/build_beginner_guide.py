@@ -157,7 +157,7 @@ title.add_run('Getting Started with Claude and Obsidian')
 title.paragraph_format.space_after = Pt(6)
 
 sub = doc.add_paragraph()
-sub.add_run('A beginner’s guide for Mac and Windows').font.size = Pt(13)
+sub.add_run('A beginner’s guide for Mac, Windows and Chromebook').font.size = Pt(13)
 sub.runs[0].font.color.rgb = MUTED
 sub.paragraph_format.space_after = Pt(18)
 
@@ -172,15 +172,17 @@ intro.paragraph_format.space_after = Pt(4)
 
 intro2 = doc.add_paragraph()
 intro2.add_run(
-    'This guide gets you from nothing installed to your first note, on either a Mac or a '
-    'Windows PC. It takes about 15–20 minutes.'
+    'This guide gets you from nothing installed to your first note, on a Mac, a Windows PC '
+    'or a Chromebook. It takes about 15–20 minutes (about 30 on a Chromebook).'
 )
 
 add_callout('What you’ll need', [
-    'A Mac or Windows PC with an internet connection.',
-    'About 15–20 minutes, uninterrupted.',
-    'A free account for Claude (claude.ai) — Obsidian needs no account at all.',
-    'Nothing to pay for. Both apps are free to use for what this guide covers.',
+    'A Mac, Windows PC or Chromebook with an internet connection. (A school or work Chromebook '
+    'often cannot run Linux apps, which this guide needs.)',
+    'About 15–20 minutes, uninterrupted (about 30 on a Chromebook).',
+    'A paid Claude plan (Pro or higher). Claude’s Code feature, the part that works on your '
+    'files, is not included in the free plan. Obsidian needs no account at all.',
+    'Obsidian itself is free. The Claude plan is the only thing you pay for.',
 ])
 
 # ==============================================================================
@@ -248,6 +250,30 @@ add_callout('Don’t create a vault yet', [
     'now — Part 3 walks through it deliberately, including where the vault should live.',
 ], fill='F1F1F1')
 
+h2 = doc.add_paragraph(style='Heading 2'); h2.add_run('On a Chromebook')
+doc.add_paragraph(
+    'A Chromebook can run a small Linux computer inside it, and Obsidian runs there. You will '
+    'paste a few short commands into a Terminal window; each one is written out for you.'
+)
+add_step(1, [('Turn on Linux: open ', False), ('Settings → About ChromeOS → Developers → Linux '
+             'development environment → Set up', True), (' and follow the prompts (a few minutes). '
+             'If you cannot find this setting, your Chromebook may be managed by a school or '
+             'employer, and this guide will not work on it.', False)])
+add_step(2, 'A Terminal window opens when Linux is ready (you can open it later by searching '
+             '“Terminal” in the launcher). Paste this and press Enter: sudo apt update && sudo '
+             'apt install -y curl git flatpak')
+add_step(3, 'Paste: flatpak remote-add --if-not-exists flathub '
+             'https://dl.flathub.org/repo/flathub.flatpakrepo')
+add_step(4, 'Paste: flatpak install -y flathub md.obsidian.Obsidian')
+add_step(5, 'Close the Terminal, shut Linux down (right-click Terminal in the launcher → Shut '
+             'down Linux), reopen Terminal and start Obsidian with: flatpak run md.obsidian.Obsidian')
+add_callout('If that does not work', [
+    'The full Chromebook guide in the starter kit (chromebook-setup.md) has a second way to '
+    'install Obsidian (an AppImage) and a fix for a common “libnss3” error. These Chromebook '
+    'steps are drafted from the official instructions and are still being confirmed on a real '
+    'Chromebook.',
+], fill='F1F1F1')
+
 # ==============================================================================
 # PART 2: INSTALL CLAUDE
 # ==============================================================================
@@ -256,26 +282,39 @@ h.paragraph_format.page_break_before = True
 h.add_run('Part 2 — Install Claude')
 
 doc.add_paragraph(
-    'You’ll use the Claude desktop app, which includes a “Code” tab — that’s the part that can '
-    'open a folder on your computer and read or write files in it, rather than just chatting.'
+    'On a Mac or Windows PC you’ll use the Claude desktop app, which includes a “Code” tab — that’s the part '
+    'that can open a folder on your computer and read or write files in it, rather than just chatting. '
+    'On a Chromebook you’ll use the same thing from the Terminal.'
 )
 
 h2 = doc.add_paragraph(style='Heading 2'); h2.add_run('On a Mac')
-add_step(1, 'Go to claude.ai/download.')
+add_step(1, 'Go to claude.com/download.')
 add_step(2, 'Click the macOS download button.')
 add_step(3, 'Open the downloaded file and drag Claude into Applications, the same way you did '
              'for Obsidian.')
-add_step(4, 'Open Claude from Applications, and sign in or create a free account when prompted.')
+add_step(4, 'Open Claude from Applications, and sign in with your paid Claude account.')
 
 h2 = doc.add_paragraph(style='Heading 2'); h2.add_run('On Windows')
-add_step(1, 'Go to claude.ai/download.')
+add_step(1, 'Go to claude.com/download.')
 add_step(2, 'Click the Windows download button.')
 add_step(3, 'Run the installer and follow the prompts.')
-add_step(4, 'Open Claude, and sign in or create a free account when prompted.')
+add_step(4, 'Open Claude, and sign in with your paid Claude account.')
+
+h2 = doc.add_paragraph(style='Heading 2'); h2.add_run('On a Chromebook')
+doc.add_paragraph(
+    'On a Chromebook you use the command-line version of Claude, in the same Terminal window. '
+    'It does the same job as the Code tab.'
+)
+add_step(1, 'In Terminal, paste this and press Enter (it shows no progress while it works): '
+             'curl -fsSL https://claude.ai/install.sh | bash')
+add_step(2, 'Close the Terminal, open it again, and type: claude --version. A version number '
+             'means it worked.')
+add_step(3, 'You sign in the first time you run it (Part 4). It opens a web page; if it does not, '
+             'copy the link it prints into your Chrome browser.')
 
 add_callout('A note on accounts', [
-    'Obsidian needs no account at all — it just runs. Claude needs a free account (an email '
-    'address is enough to start) because your conversations and settings are tied to it.',
+    'Obsidian needs no account at all — it just runs. Claude needs a paid plan (Pro or higher) '
+    'to use its Code feature, because your conversations and settings are tied to your account.',
 ], fill='F1F1F1')
 
 # ==============================================================================
@@ -298,6 +337,12 @@ add_step(3, [('Name it something like ', False), ('“My Notes”', True),
              (', and choose where it’s saved. The Desktop or Documents folder is a fine place '
               'to start — you can always move it later.', False)])
 add_step(4, 'Click Create. You’ll land in an empty vault with a “Welcome” note already in it.')
+add_callout('On a Chromebook', [
+    'Choose the Linux home folder as the place to save the vault (it appears as “Linux files” '
+    'in the Files app). Nothing syncs a Chromebook vault to the cloud for you: use ChromeOS '
+    'Settings → About ChromeOS → Developers → Linux development environment → Backup & restore '
+    'after big sessions, or see the full Chromebook guide for a Google Drive option.',
+], fill='F1F1F1')
 add_step(5, [('Create your first real note: click the ', False), ('new note', True),
              (' icon (top-left, looks like a page with a plus sign), then just start typing. '
               'Notes save automatically — there’s no save button.', False)])
@@ -332,6 +377,14 @@ add_step(2, 'Choose “Open folder” (or similar wording) and select your vault
 add_step(3, [('Type a message like ', False),
              ('“What files are in this folder?”', True),
              (' and send it. If Claude lists your notes back to you, it’s working.', False)])
+
+h2 = doc.add_paragraph(style='Heading 2'); h2.add_run('On a Chromebook')
+add_step(1, 'In Terminal, go to your vault folder. If you named it “My Notes” and saved it in '
+             'Linux files, type: cd ~/"My Notes"')
+add_step(2, 'Type: claude and press Enter. Sign in when it asks (it opens a web page).')
+add_step(3, [('Then type a message like ', False), ('“What files are in this folder?”', True),
+             (' If Claude lists your notes, it’s working. Keep this Terminal window open next '
+              'to Obsidian; changes show up in both.', False)])
 
 add_callout('What this actually gives you', [
     'Claude can now read your notes for context, create new ones, and edit existing ones when '
@@ -393,6 +446,8 @@ add_glossary_row(table, 'Markdown', 'A simple way of formatting plain text (like
                   '# heading) that any text editor can read, not just Obsidian.')
 add_glossary_row(table, 'Wikilink', 'Double brackets around a note title, like [[Note Name]], '
                   'that creates a clickable link to that note.')
+add_glossary_row(table, 'Terminal / Linux', 'On a Chromebook, a text window where you paste '
+                  'commands to the small Linux computer inside it. Obsidian and Claude run there.')
 add_glossary_row(table, 'Code tab', 'The part of the Claude desktop app that can open a folder '
                   'and read or write files in it, instead of just chatting.')
 
@@ -412,6 +467,8 @@ add_bullets([
     'Claude’s Code tab can’t find your notes: double-check you opened the same folder Obsidian '
     'created, not a different one, and that you selected the folder itself rather than a file '
     'inside it.',
+    'Chromebook: there is no “Linux development environment” setting: your Chromebook is '
+    'probably managed by a school or work account, which can switch Linux off.',
     'A note you expected to see in Obsidian isn’t there after Claude created it: click into the '
     'file explorer pane on the left and refresh, or close and reopen the vault — Obsidian '
     'usually picks up new files immediately, but occasionally needs a nudge.',

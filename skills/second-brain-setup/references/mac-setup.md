@@ -94,18 +94,22 @@ nothing else. That confirms iCloud sync and the folder layout are both working.
 
 Two ways to get it; pick whichever fits how you work.
 
-- **Claude desktop app (simplest, no terminal needed).** Download the Mac app from **claude.ai/download**,
+- **Claude desktop app (simplest, no terminal needed).** Download the Mac app from **claude.com/download**,
   sign in, and open its **Code** tab. Use its "open folder" action to point it at `Second Brain` — the
   parent folder, **not** `Vault`. This is what this particular setup uses.
-- **Claude Code CLI (for terminal users).** Requires Node.js 18+ (nodejs.org). Then:
+- **Claude Code CLI (for terminal users).** Install it with Anthropic's native installer (no Node.js needed):
   ```bash
-  npm install -g @anthropic-ai/claude-code
+  curl -fsSL https://claude.ai/install.sh | bash
   ```
-  Launch it from the right folder every time:
+  (Homebrew also works: `brew install --cask claude-code`.) Open a new terminal window and run
+  `claude --version` to confirm. Launch it from the right folder every time:
   ```bash
-  cd "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/Second Brain"
+  cd ~/"Library/Mobile Documents/iCloud~md~obsidian/Documents/Second Brain"
   claude
   ```
+  The first time, `claude` opens a browser to sign in. Claude Code needs a paid Claude account (Pro, Max, Team
+  or Enterprise) or Anthropic API access; the free claude.ai plan does not include it. Install steps change, so
+  check **code.claude.com/docs/en/setup** if anything here does not match what you see.
 
 Either way, the folder you open Claude on is `Second Brain` — one level **above** the vault — so that
 `CLAUDE.md` loads automatically at the start of every session. Obsidian and Claude are deliberately

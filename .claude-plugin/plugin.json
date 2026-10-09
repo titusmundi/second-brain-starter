@@ -1,0 +1,10 @@
+{
+  "name": "second-brain-starter",
+  "displayName": "Second Brain starter",
+  "description": "Sets up an Obsidian vault an AI agent can keep up to date (Thinking and Doing spaces, a CLAUDE.md of working conventions), on Mac or Windows, plus a plain-language beginner guide.",
+  "author": { "name": "Titus Mundi LLC" },
+  "homepage": "https://github.com/titusmundi/second-brain-starter",
+  "repository": "https://github.com/titusmundi/second-brain-starter",
+  "license": "MIT",
+  "version": "1.1.0"
+}

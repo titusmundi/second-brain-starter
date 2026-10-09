@@ -1,6 +1,6 @@
 ---
 name: second-brain-setup
-description: Scaffolds a fresh "Second Brain" Obsidian + Claude Code vault on a new Mac or Windows PC — the Thinking/Doing folder structure, the house CLAUDE.md conventions, and an iCloud-synced Second Brain folder that Claude Code loads automatically. Use this whenever the user wants to set up Obsidian to work with Claude Code, replicate their "second brain" or PKM (personal knowledge management) system on a new machine, start a fresh Obsidian vault an agent can read and maintain, or asks for a starter kit, template, or onboarding walkthrough for this setup — on either macOS or Windows. Also produces a standalone how-to guide (Mac and PC versions) that can be handed to someone doing the setup by hand, without Claude Code involved at all.
+description: Scaffolds a fresh "Second Brain" Obsidian + Claude Code vault on a new Mac, Windows PC or Chromebook — the Thinking/Doing folder structure, the house CLAUDE.md conventions, and a Second Brain folder (iCloud-synced on Mac and Windows; stored in Linux on a Chromebook) that Claude Code loads automatically. Use this whenever the user wants to set up Obsidian to work with Claude Code, replicate their "second brain" or PKM (personal knowledge management) system on a new machine, start a fresh Obsidian vault an agent can read and maintain, or asks for a starter kit, template, or onboarding walkthrough for this setup — on macOS, Windows or ChromeOS. Also produces a standalone how-to guide (Mac, PC and Chromebook versions) that can be handed to someone doing the setup by hand, without Claude Code involved at all.
 ---
 
 # Second Brain setup
@@ -12,7 +12,7 @@ session because Claude is launched one level above the vault, not inside it.
 
 ## Before doing anything: ask two questions
 
-1. **Which OS is this for** — macOS or Windows? If the user is asking on behalf of "a PC" or "my
+1. **Which OS is this for** — macOS, Windows or a Chromebook (ChromeOS, using its Linux environment)? If the user is asking on behalf of "a PC" or "my
    Windows laptop" while this session is running on a Mac (or vice versa), that's fine — you're
    producing files and instructions, not running the target OS.
 2. **Is this to actually build the vault right now** (you have shell/file access to the target
@@ -23,16 +23,18 @@ session because Claude is launched one level above the vault, not inside it.
 
 ## Path A: the user wants the guide
 
-Read `references/mac-setup.md` or `references/windows-setup.md` (or both, if they want to compare or
+Read `references/mac-setup.md`, `references/windows-setup.md` or `references/chromebook-setup.md` (or several, if they want to compare or
 this is going to someone else) and present it to them. These are self-contained — written so a person
 with zero prior context can follow them without Claude Code at all — and cover: turning on iCloud
 Drive, installing Obsidian, exactly which folder the vault goes in (and why the Mac and Windows
 answers differ — Windows has no equivalent of Obsidian's macOS app-scoped iCloud container, so the
 Windows guide uses the general iCloud Drive folder instead, and says so honestly rather than
-pretending the paths match), installing Claude Code, and the folder layout to create.
+pretending the paths match), installing Claude Code, and the folder layout to create. The Chromebook guide has
+no iCloud at all: the vault lives in the Linux files, with backup or Google Drive options, and Obsidian and Claude Code
+are installed inside Linux. It is drafted from the docs and one user's report and is marked as not yet fully verified.
 
 If the user wants a document they can hand to someone else, give them the relevant guide as a file
-(`references/mac-setup.md`, `references/windows-setup.md`, or the beginner PDF below) rather than only
+(`references/mac-setup.md`, `references/windows-setup.md`, `references/chromebook-setup.md`, or the beginner PDF below) rather than only
 pasting it into chat, and offer to put it into whatever format or tool they prefer to share.
 
 For someone new to *both* tools (not just new to this vault's conventions), hand them
@@ -46,8 +48,8 @@ docx-js approach — check what's available before assuming either path).
 
 Do this only once you know **where** — confirm the exact target path with the user before writing
 anything; don't guess at a path on their filesystem. Walk them through the OS-specific setup steps in
-the relevant reference guide first (installing Obsidian, turning on iCloud Drive/iCloud for Windows,
-confirming the target folder exists) — those steps involve OS settings and installers this skill can't
+the relevant reference guide first (installing Obsidian, turning on iCloud Drive/iCloud for Windows or, on a
+Chromebook, turning on Linux and choosing where the vault is backed up; confirming the target folder exists) — those steps involve OS settings and installers this skill can't
 do for the user, so confirm each is actually done before moving on rather than assuming.
 
 Once the target folder is confirmed:
@@ -78,7 +80,8 @@ Once the target folder is confirmed:
 
 2. **Fill in the one placeholder.** In the copied `CLAUDE.md`, replace `{{SECOND_BRAIN_PATH}}` with
    the real absolute path to the `Second Brain` folder you just created (the OS-specific reference
-   guide shows the expected shape of that path for Mac vs. Windows).
+   guide shows the expected shape of that path for Mac, Windows and Chromebook; on a Chromebook it is
+   inside the Linux home folder, for example `/home/<user>/Second Brain/`).
 
 3. **Tell the user what to do by hand**, because these steps need a GUI, not a shell:
    - Open `Second Brain/Vault` (not `Second Brain`) as a vault in Obsidian.

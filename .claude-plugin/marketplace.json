@@ -1,0 +1,11 @@
+{
+  "name": "titusmundi",
+  "owner": { "name": "Titus Mundi LLC" },
+  "plugins": [
+    {
+      "name": "second-brain-starter",
+      "source": "./",
+      "description": "Set up a Second Brain: an Obsidian vault an AI agent can maintain, on Mac or Windows."
+    }
+  ]
+}

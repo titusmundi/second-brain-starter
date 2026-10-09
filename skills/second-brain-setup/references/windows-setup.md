@@ -95,16 +95,24 @@ nothing else.
 ## 7. Install Claude Code
 
 - **Claude desktop app (simplest, no terminal needed).** Download the Windows app from
-  **claude.ai/download**, sign in, and open its **Code** tab. Use its "open folder" action to point it
+  **claude.com/download**, sign in, and open its **Code** tab. Use its "open folder" action to point it
   at `Second Brain` — the parent folder, **not** `Vault`.
-- **Claude Code CLI (for terminal users).** As of writing, the CLI is most reliably run on Windows
-  through **WSL** (Windows Subsystem for Linux) rather than native PowerShell/cmd — install Node.js
-  18+ inside your WSL distro, then:
-  ```bash
-  npm install -g @anthropic-ai/claude-code
+- **Claude Code CLI (for terminal users).** Claude Code now runs natively on Windows (no WSL needed). Open
+  **PowerShell** and run Anthropic's native installer:
+  ```powershell
+  irm https://claude.ai/install.ps1 | iex
   ```
-  Your `Second Brain` folder is reachable from WSL under `/mnt/c/...`. Check **claude.com/claude-code**
-  for the current supported install path before you start, since this changes over time.
+  (Or: `winget install Anthropic.ClaudeCode`.) Open a new terminal window and run `claude --version` to confirm.
+  Git for Windows is optional. Launch it from the right folder every time (adjust the path to where your
+  `Second Brain` folder is, see step 3):
+  ```powershell
+  cd "$HOME\iCloudDrive\Second Brain"
+  claude
+  ```
+  The first time, `claude` opens a browser to sign in. Claude Code needs a paid Claude account (Pro, Max, Team
+  or Enterprise) or Anthropic API access; the free claude.ai plan does not include it. WSL is still an option
+  if you prefer a Linux shell. Install steps change, so check **code.claude.com/docs/en/setup** if anything
+  here does not match what you see.
 
 Either way, the folder you open Claude on is `Second Brain` — one level **above** the vault — so that
 `CLAUDE.md` loads automatically at the start of every session.
